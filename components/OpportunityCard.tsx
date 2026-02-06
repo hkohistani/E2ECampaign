@@ -33,6 +33,7 @@ export default function OpportunityCard({ opportunity, delay = 0, isVisible = tr
       case 'revenue': return 'text-[#007a47]';
       case 'retention': return 'text-[#ff6b6b]';
       case 'upsell': return 'text-[#4c65f0]';
+      case 'engagement': return 'text-[#9c27b0]';
     }
   };
 

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import TabBar from '../../components/TabBar';
 import ScheduleView from '../../components/ScheduleView';
 import GoalsView from '../../components/GoalsView';
+import FanOpportunitiesView from '../../components/FanOpportunitiesView';
 import { getCampaigns, Campaign } from '../../lib/campaignsStore';
 
 // Metrics for Active tab
@@ -32,11 +33,19 @@ const goalsMetrics = [
   { title: 'Next Deadline', value: '3 days', subtitle: 'Pacers game Jan 15' },
 ];
 
+// Metrics for Fan Opportunities tab
+const fanOpportunitiesMetrics = [
+  { title: 'Total Fan Segments', value: '5', subtitle: 'Profile-based opportunities' },
+  { title: 'Fans Identified', value: '8.1K', subtitle: 'Across all segments', isPositive: true },
+  { title: 'Engagement Value', value: '$4.6M+', subtitle: 'Potential revenue impact', isPositive: true },
+  { title: 'Avg. Confidence', value: '90%', subtitle: 'AI prediction accuracy', isPositive: true },
+];
+
 function CampaignsPageContent() {
   const searchParams = useSearchParams();
-  const tabParam = searchParams.get('tab') as 'active' | 'schedule' | 'goals' | null;
+  const tabParam = searchParams.get('tab') as 'active' | 'schedule' | 'goals' | 'fan-opportunities' | null;
 
-  const [activeTab, setActiveTab] = useState<'active' | 'schedule' | 'goals'>(tabParam || 'active');
+  const [activeTab, setActiveTab] = useState<'active' | 'schedule' | 'goals' | 'fan-opportunities'>(tabParam || 'active');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCampaigns, setSelectedCampaigns] = useState<number[]>([]);
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
@@ -51,6 +60,7 @@ function CampaignsPageContent() {
   const currentMetrics =
     activeTab === 'active' ? activeMetrics :
     activeTab === 'schedule' ? scheduleMetrics :
+    activeTab === 'fan-opportunities' ? fanOpportunitiesMetrics :
     goalsMetrics;
 
   const handleSelectAll = () => {
@@ -274,6 +284,8 @@ function CampaignsPageContent() {
       {activeTab === 'schedule' && <ScheduleView />}
 
       {activeTab === 'goals' && <GoalsView />}
+
+      {activeTab === 'fan-opportunities' && <FanOpportunitiesView />}
     </div>
   );
 }

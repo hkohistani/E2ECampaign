@@ -1,6 +1,6 @@
 interface TabBarProps {
-  activeTab: 'active' | 'schedule' | 'goals';
-  onTabChange: (tab: 'active' | 'schedule' | 'goals') => void;
+  activeTab: 'active' | 'schedule' | 'goals' | 'fan-opportunities';
+  onTabChange: (tab: 'active' | 'schedule' | 'goals' | 'fan-opportunities') => void;
 }
 
 export default function TabBar({ activeTab, onTabChange }: TabBarProps) {
@@ -45,6 +45,20 @@ export default function TabBar({ activeTab, onTabChange }: TabBarProps) {
         >
           Season Opportunities
           {activeTab === 'goals' && (
+            <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#4c65f0] rounded-t-full animate-slide-in" />
+          )}
+        </button>
+
+        <button
+          onClick={() => onTabChange('fan-opportunities')}
+          className={`relative py-4 text-base font-semibold tracking-tight transition-colors ${
+            activeTab === 'fan-opportunities'
+              ? 'text-[#4c65f0]'
+              : 'text-[rgba(0,0,0,0.65)] hover:text-black'
+          }`}
+        >
+          Fan Opportunities
+          {activeTab === 'fan-opportunities' && (
             <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#4c65f0] rounded-t-full animate-slide-in" />
           )}
         </button>

@@ -3,14 +3,14 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getHomeGames, GameSchedule } from '../lib/mockGameSchedule';
-import { getActiveRecommendations, OpportunityData } from '../lib/mockRecommendations';
+import { getSeasonRecommendations, OpportunityData } from '../lib/mockRecommendations';
 import OpportunityCard from './OpportunityCard';
 
 export default function RecommendedCampaigns() {
   const [isVisible, setIsVisible] = useState(false);
   const [view, setView] = useState<'games' | 'milestones'>('games');
   const games = getHomeGames();
-  const milestones = getActiveRecommendations();
+  const milestones = getSeasonRecommendations();
 
   useEffect(() => {
     // Trigger entrance animation
